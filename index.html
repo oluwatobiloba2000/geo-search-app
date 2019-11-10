@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type='text/javascript' src='https://code.jquery.com/jquery-1.8.2.js'></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="shortcut icon" href="./UI/img/geo-search-icon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Lobster|Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./UI/styles/loader.css">
+    <link rel="stylesheet" href="./UI/styles/fb-design-btn.css">
+    <link rel="stylesheet" href="./UI/styles/index.css">
+    <title>Geo Search || search location</title>
+    <meta property="og:url"           content="https://geo-search.netlify.com" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="Geo Search || search for any location" />
+    <meta property="fb:app_id"        content="1732816256851456" />
+    <meta property="og:image"         content="https://www.mapquestapi.com/staticmap/v5/map?key=H1snoR7HAMGka2pLiA1cDnQiU2mVEc5x&locations=6.4547,3.38877&size=1100,500@2x" />
+    <meta property="og:description"   content="Geo-Search is a tool that allows people to search for places and extract information such as timezone, map and local weather conditions like temperature" />
+   <script>
+    window.fbAsyncInit = function() {
+        FB.init({
+          appId            : '1732816256851456',
+          autoLogAppEvents : true,
+          xfbml            : true,
+          version          : 'v2.10'
+        });
+        FB.AppEvents.logPageView();
+      };
+    </script>
+</head>
+
+<body>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
+    <header>
+        <nav>
+            <a class="navbar__brand" onclick="reload()" id="nav__logo" href="javascript:void()">
+                <img src="./UI/img/geo-search-logo_upscaled_illustration_x4.jpg" alt="logo">
+                <span>Geo search</span>
+            </a>
+
+            <div class="collapsable navbar__flex navbar__collapsable">
+                <ul class="navbar__nav left__navbar">
+                    <li class="nav__item">
+                        <a href="#" class="nav__link">Dashboard</a>
+                        <span class="underline"></span>
+                    </li>
+                </ul>
+
+                <!-- THIS IS THE RIGHT NAV BAR -->
+                <ul class="navbar__nav right__navbar">
+                    <li class="nav__item search__container">
+                        <img class="search__bar__icon" src="https://img.icons8.com/android/24/000000/search.png">
+                        <input type="text" name="search__bar" placeholder="search for a location" id="search__bar">
+                        <button type="submit" class="search__btn" id="search__btn">Search</button>
+                    </li>
+                    <span id="hover__nav">
+                        <img src="./UI/img/angle-arrow-down.svg" alt="arrow down icon">
+                        <div class="dropdown-background">
+                            <div class="dropdown bio">
+                                <div class="triangle-up"></div>
+                                <p>This App was made by Anani oluwatobiloba</p>
+                                <p style="margin: 0;">&copy; 2019</p><br>
+                                <span>My social Media Links</span>
+                                <button class="social__btn">
+                                    <a target="_blank" href="https://github.com/oluwatobiloba2000">Github</a></button>
+                                <button class="social__btn">
+                                    <a target="_blank" href="https://facebook.com/oluwatobi.anani.9">Facebook</a>
+                                </button>
+                                <button class="social__btn">
+                                    <a target="_blank" href="https://twitter.com/Anani_oluwatobi">Twitter</a>
+                                </button>
+                            </div>
+                        </div>
+                    </span>
+                </ul>
+            </div>
+        </nav>
+        <div class="second__nav">
+            <!-- THIS IS THE RIGHT NAV BAR -->
+            <ul class="navbar__nav second__navbar__nav">
+                <span class="share__wrapper">
+                        <iframe class="iframe" src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fgeo-search.netlify.com&width=450&layout=standard&action=like&size=small&show_faces=false&share=false&height=35&appId=1732816256851456" width="450" height="35" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+                     <!-- Your share button code -->
+                    <div class="fb-share-button"
+                       data-size="large"
+                       data-href="https://geo-search.netlify.com"
+                        data-layout="button_count">
+                    </div>
+                </span>
+            </ul>
+        </div>
+    </header>
+
+    <section class="section">
+            <div class="spinner">
+                <span class="logo__container">
+                    <img class="loader__logo" src="./UI/img/geo-search-logo_upscaled_illustration_x4.jpg" alt="logo">
+                    <span class="logo__text">Geo search</span>
+                </span>
+                    <div class="rect1"></div>
+                    <div class="rect2"></div>
+                    <div class="rect3"></div>
+                    <div class="rect4"></div>
+                    <div class="rect5"></div>
+                   <span class="loading__text">Loading.....  Please wait</span>
+            </div>
+        <div class="left__div">
+            <div class="weather__result__container">
+                <h1 class="city__name__h1">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span class="bottom__navigation__span"></span>
+                    <span class="city__name"></span>
+                </h1>
+                <div>
+                    <p class="date__dashboard">
+                        <span class="weather__icon"></span>
+                        <span class="today"></span> <br />
+                        <span class="today__date__words"></span>
+                    </p>
+                    <p class="weather__degree"></p>
+                    <p class="temp__scale__btn">
+                    </p>
+                    <p class="weather__description__details description__details"></p>
+                    <p class="pressure__details"></p>
+                    <p class="humidity__details"></p>
+                    <p id="postal__code" class="description__details"></p>
+                </div>
+                <span class="view__map__mobile">
+                    <a href="#map">View map for this location</a>
+                </span>
+                <div class="location__images">
+                </div>
+            </div>
+
+        </div>
+        <div class="error__loader">
+        <button class="close__loader__btn">X</button>
+        <img class="error__loader__svg" src="./UI/img/undraw_weather_app_i5sm.svg" alt="svg image">
+        <!-- chase loader starts -->
+        <div class="sk-chase">
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+        </div>
+        <!-- chase loader ends -->
+     <div class="alert__container">
+     </div>
+        </div>
+        <!-- -----------------MAP ARENA STARTS ---------------------- -->
+        <div id="map" class="right__div"></div>
+        <noscript style="
+        font-weight: bold;
+        text-align: center;">Sorry !, This app needs javascript to run</noscript>
+    </section>
+
+    <script src="./UI/scripts/script.js"></script>
+</body>
+
+</html>
