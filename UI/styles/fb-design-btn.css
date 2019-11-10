@@ -1,0 +1,25 @@
+.share__wrapper {
+    display: none;
+    width: 99%;
+    height: 48px;
+    align-items: center;
+}
+.iframe {
+width: 50% !important;
+height: 56% !important;
+}
+
+.fb-share-button span {
+width: 154px !important;
+height: 61% !important;
+top: 3px;
+right: -95px;
+position: initial !important;
+}
+
+.fb-share-button span iframe{
+top: 0;
+width: 58% !important;
+height: 109% !important;
+bottom: 0;
+}
